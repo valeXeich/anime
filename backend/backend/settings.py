@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 
@@ -24,6 +25,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'corsheaders',
+
+    'anime',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +55,7 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 
+AUTH_USER_MODEL = "anime.CustomUser"
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -100,6 +104,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 LANGUAGE_CODE = 'en-us'
