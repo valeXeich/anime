@@ -1,6 +1,6 @@
 <template>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <Header></Header>
+  <router-view></router-view>
   <Footer></Footer>
 </template>
 
@@ -16,4 +16,8 @@ export default {
 </script>
 
 <style>
+@import url(https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css);
+@import url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css);
+@import './assets/css/main.css';
+
 </style>

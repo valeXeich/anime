@@ -34,7 +34,7 @@
 
 </script>
 
-<style>
+<style scoped>
 .footer {
 	background: #070720;
 	padding-top: 60px;

@@ -36,7 +36,7 @@
 
 </script>
 
-<style>
+<style scoped>
 .header {
 	background: #070720;
 }
