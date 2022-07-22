@@ -1,22 +1,20 @@
 <template>
-  <div class="product__sidebar">
-    <div class="product__sidebar__view">
-      <div class="section-title">
-        <h5>ТОП ПРОСМОТРОВ</h5>
-      </div>
-      <div class="filter__gallery">
-        <div
-          v-for="anim in anime" :key="anim.slug"
-          class="product__sidebar__view__item set-bg mix day years"
-          style="
-            background-image: url(https://ae04.alicdn.com/kf/H9ebb6f77a7864fef959de3ce7ef73c82g/-.jpg);
-          "
-        >
-          <div class="ep">{{ anim.total_series }} / {{ anim.total_series }} </div>
-          <div class="view"><i class="bi bi-eye"></i> {{ anim.views }}</div>
-          <h5><router-link :to="`/anime/${anim.slug}`">{{ anim.title }}</router-link></h5>
-        </div>
-      </div>
+  <div class="anime__details__sidebar">
+    <div class="section-title">
+      <h5>Похожие</h5>
+    </div>
+
+    <div
+      v-for="anim in anime"
+      :key="anim.slug"
+      class="product__sidebar__view__item set-bg"
+      style="
+        background-image: url(https://ae04.alicdn.com/kf/H9ebb6f77a7864fef959de3ce7ef73c82g/-.jpg);
+      "
+    >
+      <div class="ep">{{ anim.total_series }} / {{ anim.total_series }}</div>
+      <div class="view"><i class="bi bi-eye"></i> {{ anim.views }}</div>
+      <h5><router-link :to="`/anime/${anim.slug}`">{{ anim.title }}</router-link></h5>
     </div>
   </div>
 </template>

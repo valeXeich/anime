@@ -20,7 +20,9 @@
               </div>
             </div>
             <div class="row">
-              <anime-item></anime-item>
+              <anime-item
+              :anime="anime_actual"
+              />
             </div>
           </div>
           <!-- Popular-->
@@ -41,7 +43,9 @@
               </div>
             </div>
             <div class="row">
-              <anime-item></anime-item>
+              <anime-item
+              :anime="anime_popular"
+              />
             </div>
           </div>
           <!--Recent-->
@@ -61,12 +65,16 @@
               </div>
             </div>
             <div class="row">
-              <anime-item></anime-item>
+              <anime-item
+              :anime="anime_recent"
+              />
             </div>
           </div>
         </div>
 		<div class="col-lg-4 col-md-6 col-sm-8">
-			<sidebar-top-view-vue></sidebar-top-view-vue>
+			<sidebar-top-view-vue
+      :anime="anime_top_view"
+      />
 			<sidebar-comments-vue></sidebar-comments-vue>
 		</div>
       </div>
@@ -78,12 +86,45 @@
 import AnimeItem from "@/components/AnimeItem.vue";
 import SidebarTopViewVue from "@/components/SidebarTopView.vue";
 import SidebarCommentsVue from "@/components/SidebarComments.vue";
+import axios from 'axios'
 export default {
   components: {
     AnimeItem,
 	SidebarTopViewVue,
 	SidebarCommentsVue
   },
+  data() {
+    return {
+      anime_actual: [],
+      anime_popular: [],
+      anime_recent: [],
+      anime_top_view: [],
+    }
+  },
+  methods: {
+    async getActualAnime() {
+      const response = await axios.get('anime/list/?ordering=-views_cnt,-comm_cnt,-release_date');
+      this.anime_actual = response.data;
+    },
+    async getPopularAnime() {
+      const response = await axios.get('anime/list/?ordering=-views_cnt,-comm_cnt');
+      this.anime_popular = response.data;
+    },
+    async getRecentAnime() {
+        const response = await axios.get('anime/list/?ordering=-created_date');
+        this.anime_recent = response.data;
+    },
+    async getTopViewAnime() {
+      const response = await axios.get('anime/list/?ordering=--views_cnt');
+      this.anime_top_view = response.data
+    }
+  },
+  mounted() {
+    this.getActualAnime(),
+    this.getPopularAnime(),
+    this.getRecentAnime(),
+    this.getTopViewAnime()
+  }
 };
 </script>
 

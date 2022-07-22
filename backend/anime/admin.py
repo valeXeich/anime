@@ -1,8 +1,27 @@
 from django.contrib import admin
 
-from .models import Anime, Genre, Director, Studio, Comment, Rating, RatingStars, Ip, CustomUser, WatchingNow, WillWatch, Viewed, Throw, Favorite
+from .models import (
+    Anime,
+    Genre,
+    Director,
+    Studio,
+    Comment,
+    Rating,
+    RatingStars,
+    Ip,
+    CustomUser,
+    WatchingNow,
+    WillWatch,
+    Viewed,
+    Throw,
+    Favorite
+)
 
-admin.site.register(Anime)
+
+@admin.register(Anime)
+class AnimeAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
 admin.site.register(Genre)
 admin.site.register(Director)
 admin.site.register(Studio)

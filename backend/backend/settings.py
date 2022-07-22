@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'corsheaders',
+    'django_filters',
 
     'anime',
 ]
@@ -54,6 +55,14 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.TokenAuthentication',
+    ),
+}
 
 AUTH_USER_MODEL = "anime.CustomUser"
 
@@ -89,6 +98,12 @@ DATABASES = {
     }
 }
 
+
+DJOSER = {
+    "SERIALIZERS": {
+        "user_create": "anime.serializers.UserRegistrationSerializer",
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {

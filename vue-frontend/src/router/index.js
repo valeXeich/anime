@@ -3,6 +3,7 @@ import AnimeList from '@/views/AnimeList'
 import AnimeDetail from '@/views/AnimeDetail'
 import Login from '@/views/Login'
 import SignUp from '@/views/SignUp'
+import Profile from '@/views/Profile'
 
 const routes = [
   {
@@ -10,7 +11,7 @@ const routes = [
     component: AnimeList
   },
   {
-    path: '/anime',
+    path: '/anime/:slug',
     component: AnimeDetail
   },
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/sign-up',
     component: SignUp
+  },
+  {
+    path: '/profile/:slug',
+    component: Profile
   }
 ]
 

@@ -1,27 +1,27 @@
 <template>
-  <div class="col-lg-4 col-md-6 col-sm-6">
+  <div v-for="anim in anime" :key="anim.slug" class="col-lg-4 col-md-6 col-sm-6">
     <div class="product__item">
       <div
         class="product__item__pic set-bg"
         style="background-image: url(https://ae04.alicdn.com/kf/H9ebb6f77a7864fef959de3ce7ef73c82g/-.jpg);"
       >
         <div class="ep">
-          12 / 12
+         {{ anim.total_series }} / {{ anim.total_series }} 
         </div>
         <div class="comment">
-          <i class="bi bi-chat"></i> 15
+          <i class="bi bi-chat"></i> {{ anim.comments }}
         </div>
         <div class="view">
-          <i class="bi bi-eye"></i> 5
+          <i class="bi bi-eye"></i> {{ anim.views }}
         </div>
       </div>
       <div class="product__item__text">
         <ul>
-          <li>Ongoing</li>
-          <li>2022</li>
+          <li>{{ anim.type }}</li>
+          <li>{{ anim.release_date }}</li>
         </ul>
         <h5>
-          <a href="#">Jujutsu kaisen</a>
+          <router-link :to="`/anime/${anim.slug}`">{{ anim.title }}</router-link>
         </h5>
       </div>
     </div>
@@ -29,10 +29,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+	props: {
+		anime: {
+			type: Array,
+			required: true
+		}
+	}
+};
 </script>
 
 <style scoped>
+
 .product__item {
 	margin-bottom: 30px;
 }

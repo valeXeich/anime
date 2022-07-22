@@ -4,16 +4,16 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a href="{% url 'anime:anime_list' %}">
+                    <router-link :to="'/'">
                         <img src="@/assets/logo.png" alt="">
-                    </a>
+                    </router-link>
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li><a href="{% url 'anime:anime_list' %}">Главная</a></li>
+                            <li><router-link :to="'/'">Главная</router-link></li>
                             <li><a href="{% url 'anime:genre_list' %}">Жанры <span class="arrow_carrot-down"></span></a></li>
                             <li ><a href="{% url 'anime:anime_all' %}">Все аниме</a></li>
                             <li ><a href="{% url 'anime:anime_detail' slug=random_anime.url %}">Случайное аниме</a></li>
@@ -23,7 +23,11 @@
             </div>
             <div class="col-lg-2">
                 <div class="header__right">
-                    <a href="{% url 'account_login' %}">Вход</a>
+					<template v-if="isAuthenticated">
+						<router-link :to="`profile/${username}`"><i class="bi bi-person-fill"></i></router-link>
+                    	<a href="#"><i class="bi bi-box-arrow-right"></i></a>
+					</template>
+                    <router-link v-else :to="'/login'">Вход</router-link>
                 </div>
             </div>
         </div>
@@ -32,8 +36,12 @@
 </header>
 </template>
 
-<script>
 
+<script>
+import { mapGetters } from 'vuex'
+export default {
+	computed: mapGetters(['username', 'isAuthenticated'])
+}
 </script>
 
 <style scoped>
